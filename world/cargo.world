@@ -1,0 +1,74 @@
+# laser scanner properties
+define laser ranger
+(
+	sensor( 			
+    range [ 0.0  30.0 ]
+    fov 270.25
+    samples 1081
+  )
+
+  # generic model properties
+  color "black"
+  size [ 0.05 0.05 0.1 ]
+)
+
+define bot position
+(
+  size [0.5 0.5 0.25]
+  origin [-0.05 0 0 0]
+  gui_nose 1
+  drive "omni"
+
+  laser(pose [ 0.050 0.000 0 0.000 ])
+)
+
+define cargo model
+(
+  # 30' x 8' rectangular cargo container
+  color "red"
+  size [ 2.4384 9.144 2 ]
+
+  gui_nose 0
+  gui_grid 0
+  # we don't want anyone moving our cargo boxes!
+  gui_move 0
+
+  gui_outline 0
+  gripper_return 0
+  fiducial_return 0
+  # laser_return 1
+)
+
+# set the resolution of the underlying raytrace model in meters
+resolution 0.02
+# simulation timestep in milliseconds
+interval_sim 100 
+
+
+window
+( 
+  size [ 745.000 448.000 ] 
+  scale 20
+)
+
+# load a cargo box at (0, 0, 0)
+cargo
+( 
+  name "box"
+  pose [ 0 0 0 90.000 ]
+)
+
+# and a robot, too!
+bot( 
+  pose [ 0 -4 0 103.000 ] 
+  name "simbot" 
+  color "blue"
+)
+
+## Uncomment if you want another cargo box
+## Set pose [] according to where you want it
+# cargo
+# ( 
+#   name "newbox"
+#   pose [ 5 5 0 90.000 ]
+# )
