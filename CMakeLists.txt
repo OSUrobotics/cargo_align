@@ -6,6 +6,9 @@ project(cargo_align)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   std_msgs
+  roscpp
+  geometry_msgs
+  sensor_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -80,7 +83,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES cargo_align
-#  CATKIN_DEPENDS std_msgs
+ CATKIN_DEPENDS std_msgs roscpp geometry_msgs sensor_msgs
 #  DEPENDS system_lib
 )
 
@@ -101,16 +104,16 @@ include_directories(
 # )
 
 ## Declare a cpp executable
-# add_executable(cargo_align_node src/cargo_align_node.cpp)
+add_executable(ps3_teleop src/ps3_teleop.cpp)
 
 ## Add cmake target dependencies of the executable/library
 ## as an example, message headers may need to be generated before nodes
-# add_dependencies(cargo_align_node cargo_align_generate_messages_cpp)
+# add_dependencies(ps3_teleop cargo_align_generate_messages_cpp)
 
 ## Specify libraries to link a library or executable target against
-# target_link_libraries(cargo_align_node
-#   ${catkin_LIBRARIES}
-# )
+target_link_libraries(ps3_teleop
+  ${catkin_LIBRARIES}
+)
 
 #############
 ## Install ##
@@ -127,7 +130,7 @@ include_directories(
 # )
 
 ## Mark executables and/or libraries for installation
-# install(TARGETS cargo_align cargo_align_node
+# install(TARGETS cargo_align ps3_teleop
 #   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 #   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 #   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
