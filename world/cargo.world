@@ -16,10 +16,11 @@ define bot position
 (
   size [0.5 0.5 0.25]
   origin [-0.05 0 0 0]
+  bitmap "bot.pgm"
   gui_nose 1
   drive "omni"
 
-  laser(pose [ 0.050 0.000 0 0.000 ])
+  laser(pose [ 0.050 0.000 0.25 0.000 ])
 )
 
 define cargo model
@@ -63,6 +64,9 @@ bot(
   pose [ 0 -4 0 103.000 ] 
   name "simbot" 
   color "blue"
+  # color "white"
+
+  gui_nose 1
 )
 
 ## Uncomment if you want another cargo box

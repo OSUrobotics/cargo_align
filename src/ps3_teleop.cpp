@@ -22,9 +22,11 @@ private:
 
 
 JoystickTeleop::JoystickTeleop():
-	linear_x(0),
-	linear_y(1),
-	angular_(2)
+	linear_x(1),
+	linear_y(0),
+	angular_(2),
+	a_scale_(2),
+	l_scale_(2)
 {
 
 	nh_.param("axis_linear_x", linear_x, linear_x);
@@ -47,9 +49,9 @@ void JoystickTeleop::joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
 
 	vel.angular.x = 0;
 	vel.angular.y = 0;
-	vel.angular.z = a_scale_*joy->axes[angular_];
-	vel.linear.x = l_scale_*joy->axes[linear_x];
-	vel.linear.y = l_scale_*joy->axes[linear_y];
+	vel.angular.z = a_scale_ * joy->axes[angular_];
+	vel.linear.x = l_scale_ * joy->axes[linear_x];
+	vel.linear.y = l_scale_ * joy->axes[linear_y];
 	vel.linear.z = 0;
 	vel_pub_.publish(vel);
 }
